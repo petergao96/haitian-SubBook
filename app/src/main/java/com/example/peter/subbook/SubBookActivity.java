@@ -1,24 +1,18 @@
 package com.example.peter.subbook;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -39,8 +33,20 @@ public class SubBookActivity extends AppCompatActivity {
         setContentView(R.layout.main_sub_activity);
         oldSubs = (ListView) findViewById(R.id.OldSubs);
 
-    }
+        oldSubs.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Subscription listItem = (Subscription) parent.getItemAtPosition(position);
+                Intent intent = new Intent(SubBookActivity.this, ModSubActivity.class);
+                intent.putExtra("listItem", listItem);
+                intent.putExtra("subList", subList);
+                intent.putExtra("position", position);
 
+                startActivity(intent);
+            }
+        });
+
+    }
 
     @Override
     protected void onStart() {
@@ -55,7 +61,6 @@ public class SubBookActivity extends AppCompatActivity {
         oldSubs.setAdapter(adapter);
 
     }
-
 
     private void loadFromFile() {
 
@@ -90,7 +95,5 @@ public class SubBookActivity extends AppCompatActivity {
         super.onDestroy();
         Log.i("Lifecycle", "onDestroy is called");
     }
-
-
 
 }

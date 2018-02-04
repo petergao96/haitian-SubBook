@@ -35,7 +35,12 @@ public class Subscription implements Serializable {
     public String getCharge(){return charge;}
     public String getComment(){return comment;}
 
-
+   public void setName(String name){ this.name = name;}
+    public void setDate(Date date){
+        this.date=date;
+    }
+    public void setCharge(String charge){this.charge=charge;}
+    public void setComment(String comment){this.comment =comment;}
 
 
 

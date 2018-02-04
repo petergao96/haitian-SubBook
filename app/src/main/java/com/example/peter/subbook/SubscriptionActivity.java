@@ -36,15 +36,17 @@ public class SubscriptionActivity extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sub_service);
+
         adapter = new ArrayAdapter<Subscription>(this,
                     R.layout.list_item, subList);
-            Intent intent = getIntent();
-
-            subList = (ArrayList<Subscription>)
+        Intent intent = getIntent();
+        subList = (ArrayList<Subscription>)
                     intent.getSerializableExtra("subList");
+
         nameText = (EditText) findViewById(R.id.name);
         chargeText = (EditText) findViewById(R.id.charge);
         commentText  = (EditText) findViewById(R.id.comment);
+
         Button DoneButton = (Button) findViewById(R.id.done);
 
         DoneButton.setOnClickListener(new View.OnClickListener() {
