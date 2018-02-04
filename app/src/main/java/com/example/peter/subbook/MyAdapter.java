@@ -26,16 +26,16 @@ public class MyAdapter extends ArrayAdapter<Subscription>{
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
-        // Lookup view for data population
+        // Find each text box
         TextView textName = (TextView) convertView.findViewById(R.id.TextName);
         TextView textCharge = (TextView) convertView.findViewById(R.id.TextCharge);
         TextView textComment = (TextView) convertView.findViewById(R.id.TextComment);
         TextView textDate = (TextView) convertView.findViewById(R.id.TextDate);
-        // Populate the data into the template view using the data object
-        textName.setText(subs.getName());
-        textCharge.setText(subs.getCharge());
-        textDate.setText(subs.getDate().toString());
-        textComment.setText(subs.getComment());
+        // Set the text of the elements
+        textName.setText("Name: " +subs.getName());
+        textCharge.setText("Charge: $"+subs.getCharge());
+        textDate.setText("Date Started: "+subs.getFormDate());
+        textComment.setText("Comments: "+subs.getComment());
 
         // Return the completed view to render on screen
         return convertView;

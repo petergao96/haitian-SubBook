@@ -2,6 +2,7 @@
 
 package com.example.peter.subbook;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -29,13 +30,17 @@ public class Subscription implements Serializable {
     }
 
     public String getName(){ return name;}
-    public Date getDate(){
-        return date;
+    public Date getDate(){return date;}
+
+    public String getFormDate(){
+        String ymddate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+        return ymddate;
     }
+
     public String getCharge(){return charge;}
     public String getComment(){return comment;}
 
-   public void setName(String name){ this.name = name;}
+    public void setName(String name){ this.name = name;}
     public void setDate(Date date){
         this.date=date;
     }

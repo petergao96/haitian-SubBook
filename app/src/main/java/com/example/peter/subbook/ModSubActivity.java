@@ -19,7 +19,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ModSubActivity extends AppCompatActivity {
     private static final String FILENAME = "subs.sav";
@@ -31,8 +35,11 @@ public class ModSubActivity extends AppCompatActivity {
     private EditText modDate;
     private EditText modCharge;
     private EditText modComment;
+    private TextView chargeToDate;
     private long id;
-
+    private Date nowDate = new Date();
+    private SimpleDateFormat ymdform = new SimpleDateFormat("yyyy-MM-dd");
+    private Date datey;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +57,20 @@ public class ModSubActivity extends AppCompatActivity {
         modName = (EditText) findViewById(R.id.modName);
         modName.setText(listItem.getName());
         modDate = (EditText) findViewById(R.id.modDate);
-        modDate.setText(listItem.getDate().toString());
+        modDate.setText(listItem.getFormDate());
         modCharge = (EditText) findViewById(R.id.modCharge);
         modCharge.setText(listItem.getCharge());
         modComment = (EditText) findViewById(R.id.modComment);
         modComment.setText(listItem.getComment());
+        chargeToDate = (TextView) findViewById(R.id.chargeToDate);
+
+        int m1 = listItem.getDate().getYear()*12 + listItem.getDate().getMonth();
+        int m2 = nowDate.getYear()*12 + nowDate.getMonth();
+        int cost = (m2-m1)* Integer.parseInt(listItem.getCharge());
+        if (cost<0)
+            chargeToDate.setText("Current Charge to date: $0");
+        else
+            chargeToDate.setText("Current Charge to date: $" + Integer.toString(cost));
 
         Button DoneButton = (Button) findViewById(R.id.doneButton);
         Button DeleteButton = (Button) findViewById(R.id.deleteButton);
@@ -66,9 +82,16 @@ public class ModSubActivity extends AppCompatActivity {
                 String charge = modCharge.getText().toString();
                 String comment = modComment.getText().toString();
 
+                try {
+                    datey = ymdform.parse(modDate.getText().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
                 subList.get(position).setName(name);
                 subList.get(position).setCharge(charge);
                 subList.get(position).setComment(comment);
+                subList.get(position).setDate(datey);
                 adapter.notifyDataSetChanged();
                 saveInFile();
                 onBackPressed();

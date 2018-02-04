@@ -79,10 +79,10 @@
     <EditText
         android:id="@+id/modComment"
         android:layout_width="355dp"
-        android:layout_height="360dp"
+        android:layout_height="144dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:selectAllOnFocus="false"
@@ -91,4 +91,16 @@
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/modDate" />
+
+    <TextView
+        android:id="@+id/chargeToDate"
+        android:layout_width="195dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modComment" />
 </android.support.constraint.ConstraintLayout>

@@ -33,7 +33,7 @@
         android:layout_marginTop="4dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:text="Charge"
+        android:text="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,13 +57,14 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="203dp"
-        android:layout_height="38dp"
+        android:layout_height="79dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="New Scription Plan"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
