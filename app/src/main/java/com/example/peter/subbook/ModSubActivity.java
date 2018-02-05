@@ -80,6 +80,9 @@ public class ModSubActivity extends AppCompatActivity {
                 setResult(RESULT_OK);
                 String name = modName.getText().toString();
                 String charge = modCharge.getText().toString();
+                if (charge.equals(""))
+                    charge ="0";
+
                 String comment = modComment.getText().toString();
 
                 try {
